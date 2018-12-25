@@ -19,6 +19,8 @@ void SeqListTest1()
 	//6,4,2,1,10,2,3
 	SeqListPopInsert(&seqlist, 4);
 	//6,4,2,1,2,3
+	SeqListBubbleSort(&seqlist);
+	//1,2,2,3,4,6
 
 	SeqListPopBack(&seqlist);
 	//6,4,2,1,10,2

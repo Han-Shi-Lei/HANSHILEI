@@ -53,5 +53,11 @@ bool SeqListEmpty(const SeqList *seqlist);
 //返回数据个数
 size_t SeqListSize(const SeqList *seqlist);
 
+//冒泡排序
+void SeqListBubbleSort(SeqList *seqList);
+//二分查找
+size_t SeqListBinarySearch(const SeqList *seqList, SLDataType value);
+//删除遇到的所有value
+void SeqListRemoveAll(SeqList *seqlist, SLDataType value);
 
 

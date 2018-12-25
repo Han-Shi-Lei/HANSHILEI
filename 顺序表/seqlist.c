@@ -148,12 +148,91 @@ void SeqListRemove(SeqList *seqlist, SLDataType value)
 
 bool SeqListEmpty(const SeqList *seqlist)
 {
-	return seqlist->size == 0;
+	return seqlist->size = 0;
 }
 
 size_t SeqListSize(const SeqList *seqlist)
 {
 	return seqlist->size;
+}
+void SeqListBubbleSort(SeqList *seqlist)
+{
+	size_t flag;
+	for (size_t i = 0; i < seqlist->size - 1; i++){
+		flag = 0;
+		//一次冒泡过程
+		for (size_t j = 0; j < seqlist->size - 1 - i; j++){
+			if (seqlist->array[j] > seqlist->array[j + 1]){
+				Swap(seqlist->array + j, seqlist->array + j + 1);
+				flag = 1;
+			}
+		}
+		//一次冒泡结束
+
+		if (flag = 0){
+			break;
+		}
+	}
+}
+
+size_t SeqListBinarySearch(const SeqList *seqlist, SLDataType value)
+{
+	size_t left = 0;
+	size_t right = seqlist->size;
+
+	while (left < right){
+		size_t mid = (right - left) / 2 + left;
+		if (seqlist->array[mid] == value){
+			return mid;
+		}
+		else if (value < seqlist->array[mid]){
+			right = mid;
+		}
+		else{
+			left = mid + 1;
+		}
+	}
+	return -1;
+}
+void SeqListRemoveAll(SeqList *seqlist, SLDataType value)
+{
+	assert(seqlist != NULL);
+	assert(seqlist->size > 0);
+#if 0  //O(n^2)     O(1)
+	size_t pos;
+	while ((pos = SeqListFind(seqlist, value)) != -1){
+		SeqListPopInsert(seqlist, pos);
+	}
+#endif
+
+#if 0
+	SLDataType *array = (SLDataType*)malloc(sizeof(SLDataType)*seqlist->size);
+	assert(array);
+
+	size_t index = 0;
+	for (size_t i = 0; i < seqlist->size; i++){
+		if (seqlist->array[i] != value){
+			array[index] = seqlist->array[i];
+			index++;
+		}
+	}
+	for (int j = 0; j < index; j++){
+		seqlist->array[j] = array[j];
+	}
+
+	free(array);
+	seqlist->size = index;
+#endif
+	size_t index = 0;
+	for (size_t i = 0; i < seqlist->size; i++){
+		if (seqlist->array[i] != value){
+			seqlist->array[index] = seqlsit->array[i];
+			index++;
+		}
+	}
+
+	seqlist->size = index;
+
 }
 
 
