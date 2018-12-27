@@ -14,6 +14,12 @@ void SListTest1()
 	SListPushBack(&list, 12);
 	SListPushBack(&list, 13);
 	//3,2,1,11,12,13
+	SLNode *n = SListFind(&list,2);
+	/*SListModify(n, 90);*/
+	//3,90,1,11,12,13
+	SListEraseAfter(n);
+	SListInsertAfter(n, 10);
+	SListInsertBefore(&list,n, 20);
 	SListPrint(&list);
 
 	SListPopBack(&list);

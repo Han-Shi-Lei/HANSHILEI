@@ -84,6 +84,43 @@ void SListPopBack(SList *list)
 	cur->next = NULL;
 
 }
+void SListInsertAfter(SLNode *pos, SLDataType value)
+{
+	//给 value 申请结点
+	SLNode *node = SListBuyNode(value);
+	node->next = pos->next;
+	pos->next = node;
+}
+void SListEraseAfter(SLNode *pos)
+{
+	SLNode *next = pos->next;
+	pos->next = next->next;
+	free(next);
+}
+void SListInsertBefore(SList *list, SLNode *pos, SLDataType value)
+{
+	assert(list != NULL);
+	SLNode *cur = list->first;
+	while (cur->next != pos){
+		cur = cur->next;
+	}
+	// cur 指向 pos 的前一个结点
+	SLNode *node = SListBuyNode(value);
+	cur->next = node;
+	node->next = pos;
+}
+
+SLNode * SListFind(const SList *list, SLDataType value)
+{
+	assert(list != NULL);
+	for (SLNode *cur = list->first; cur != NULL; cur = cur->next){
+		if (cur->value == value){
+			return cur;
+		}
+	}
+	return NULL;
+
+}
 
 void SListPrint(const SList *list)
 {
@@ -92,4 +129,8 @@ void SListPrint(const SList *list)
 		printf("%d --> ", cur->value);
 	}
 	printf("NULL\n");
+}
+void SListModify( SLNode * pos, SLDataType value)
+{
+	pos->value = value;
 }
