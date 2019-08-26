@@ -2,6 +2,7 @@
 static DListNode* DListBuyNode(DLDataType value)
 {
 	DListNode *node = (DListNode*)malloc(sizeof(DListNode));
+	assert(node);
 	node->value = value;
 	node->next = NULL;
 	node->prev = NULL;
